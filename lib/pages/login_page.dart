@@ -61,10 +61,10 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     TextFormField(
                       decoration: InputDecoration(
-                        icon: const Icon(Icons.person),
-                        hintText: "Enter Username",
-                        labelText: "Username",
-                      ),
+                          icon: const Icon(Icons.person),
+                          hintText: "Enter Username",
+                          labelText: "Username",
+                          hintStyle: TextStyle(fontSize: 1.0)),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Username cannot be empty';
@@ -86,6 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: InputDecoration(
                         icon: const Icon(Icons.lock),
                         hintText: "Enter Username",
+                        hintStyle: TextStyle(fontSize: 1.0),
                         labelText: "Password",
                       ),
                       validator: (value) {
