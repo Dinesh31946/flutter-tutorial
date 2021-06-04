@@ -37,13 +37,45 @@ class _HomePageState extends State<HomePage> {
         title: Text("Catalog App"),
       ),
       body: (CatelogModel.items != null && CatelogModel.items!.isNotEmpty)
-          ? ListView.builder(
-              itemCount: CatelogModel.items!.length,
-              itemBuilder: (context, index) {
-                return ItemWidget(
-                  item: CatelogModel.items![index],
-                );
-              },
+          ? Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 20,
+                    crossAxisSpacing: 20,
+                  ),
+                  itemBuilder: (context, index) {
+                    final item = CatelogModel.items![index];
+                    return Card(
+                        clipBehavior: Clip.antiAlias,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
+                        child: GridTile(
+                          header: Container(
+                            child: Text(
+                              item.name!,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: Colors.teal,
+                            ),
+                          ),
+                          child: Image.network(item.image!),
+                          footer: Container(
+                            child: Text(
+                              item.price!.toString(),
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ));
+                  },
+                  itemCount: CatelogModel.items!.length),
             )
           : Center(
               child: CircularProgressIndicator(),
