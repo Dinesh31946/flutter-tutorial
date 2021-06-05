@@ -12,15 +12,22 @@ class HomeDetailPage extends StatelessWidget {
     return SafeArea(
       bottom: false,
       child: Scaffold(
-        appBar: AppBar(),
-        backgroundColor: MyTheme.creamColor,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+        ),
+        backgroundColor: context.canvasColor,
         bottomNavigationBar: Container(
-          color: Colors.white,
+          color: context.canvasColor,
           child: ButtonBar(
             alignment: MainAxisAlignment.spaceBetween,
             buttonPadding: EdgeInsets.zero,
             children: [
-              "\$${catalog.price!}".text.xl3.blueGray800.bold.make(),
+              "\$${catalog.price!}"
+                  .text
+                  .xl3
+                  .color(context.accentColor)
+                  .bold
+                  .make(),
               ElevatedButton(
                 onPressed: () async {
                   await Future.delayed(Duration(seconds: 1));
@@ -46,19 +53,30 @@ class HomeDetailPage extends StatelessWidget {
                 height: 20.0,
                 edge: VxEdge.TOP,
                 arcType: VxArcType.CONVEY,
-                child: Container(
-                  color: Colors.white,
-                  width: context.screenWidth,
-                  child: Column(
-                    children: [
-                      catalog.name!.text.xl2
-                          .color(MyTheme.darkBluishColor)
-                          .bold
-                          .make(),
-                      catalog.desc!.text.size(16).color(Colors.grey).make(),
-                      10.heightBox,
-                    ],
-                  ).p64(),
+                child: SingleChildScrollView(
+                  child: Container(
+                    color: context.cardColor,
+                    width: context.screenWidth,
+                    child: Column(
+                      children: [
+                        catalog.name!.text.xl2
+                            .color(context.accentColor)
+                            .bold
+                            .make(),
+                        catalog.desc!.text
+                            .align(TextAlign.center)
+                            .size(16)
+                            .color(Colors.grey)
+                            .make(),
+                        10.heightBox,
+                        "Amet vero elitr et eirmod diam ut at amet rebum sed. Voluptua erat no nonumy sea, dolor voluptua vero et sit. Kasd et takimata voluptua nonumy no elitr at sadipscing."
+                            .text
+                            .color(Colors.grey)
+                            .make()
+                            .pOnly(top: 15),
+                      ],
+                    ).p64(),
+                  ),
                 ),
               ),
             ),
