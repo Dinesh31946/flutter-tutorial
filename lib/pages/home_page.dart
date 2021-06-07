@@ -2,6 +2,7 @@ import 'package:first_app/core/store.dart';
 import 'package:first_app/models/cart.dart';
 import 'package:first_app/models/catalog.dart';
 import 'package:first_app/utils/routes.dart';
+import 'package:first_app/widgets/drawer.dart';
 import 'package:first_app/widgets/home_widgets/catalog_header.dart';
 import 'package:first_app/widgets/home_widgets/catalog_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -59,18 +60,29 @@ class _HomePageState extends State<HomePage> {
                 TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
       ),
       body: SafeArea(
-        child: Container(
-          padding: Vx.m32,
-          child: Column(
+        child: Scaffold(
+          appBar: AppBar(
+            title: "Catalog App".text.bold.xl2.make(),
+          ),
+          body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CatalogHeader(),
+              // CatalogHeader(),
+              Title(
+                  color: Colors.blueGrey,
+                  child: "Trending Products"
+                      .text
+                      .bold
+                      .color(context.theme.buttonColor)
+                      .make()
+                      .pOnly(top: 10, left: 10)),
               if (CatelogModel.items != null && CatelogModel.items!.isNotEmpty)
                 CatalogList().pOnly(top: 8).expand()
               else
                 CircularProgressIndicator().centered().expand(),
             ],
           ),
+          drawer: MyDrawer(),
         ),
       ),
     );
